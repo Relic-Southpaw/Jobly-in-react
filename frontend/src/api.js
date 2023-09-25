@@ -24,7 +24,6 @@ class JoblyApi {
         const params = (method === "get")
             ? data
             : {};
-
         try {
             return (await axios({ url, method, data, params, headers })).data;
         } catch (err) {
@@ -36,17 +35,73 @@ class JoblyApi {
 
     // Individual API routes
 
-    /** Get details on a company by handle. */
+    // Get details on a company by handle.
 
     static async getCompany(handle) {
         let res = await this.request(`companies/${handle}`);
         return res.company;
     }
 
-    // obviously, you'll add a lot here ...
+    // Get a list of companies.
+
+    static async getCompanyList(terms) {
+        const data = {
+            name: terms.name || undefined,
+            minEmployees: Number(terms.minEmployees) || undefined,
+            maxEmployees: Number(terms.maxEmployees) || undefined
+        }
+        let res = await this.request('companies', data)
+        return res.companies;
+    }
+
+    // Get a list of jobs.
+
+    static async getJobList(terms) {
+        const data = {
+            title: terms.title || undefined,
+            minSalary: terms.minSalary || undefined,
+            hasEquity: terms.hasEquity || undefined
+        }
+        let res = await this.request('jobs', data);
+        return res.jobs;
+    }
+
+    //Registers the new user
+
+    static async register(data) {
+        // { username, password, firstName, lastName, email }
+        let res = await this.request('auth/register', data, 'post')
+        return res.token
+    }
+
+    //Login the user if username/password are both correct
+
+    static async login(data) {
+        let res = await this.request('auth/token', data, 'post')
+        return res.token
+    }
+
+    // Get the current user
+
+    static async getCurrentUser(username) {
+        let res = await this.request(`users/${username}`)
+        return res.user
+    }
+
+    // Edit the current user 
+
+    static async editCurrentUser(username, data) {
+        let res = await this.request(`users/${username}`, data, 'patch')
+        return res.user
+    }
+
+    //Apply to the job
+
+    static async applyToJob(username, jobId) {
+        const data = {}
+        let res = await this.request(`users/${username}/jobs/${jobId}`, data, 'post')
+        return res.applied
+    }
 }
 
-// for now, put token ("testuser" / "password" on class)
-JoblyApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-    "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-    "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+export default JoblyApi
