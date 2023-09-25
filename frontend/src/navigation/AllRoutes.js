@@ -8,7 +8,7 @@ import SignUpForm from './account/SignUpForm'
 import EditProfile from './account/EditProfile'
 import NotFoundPage from './NotFoundPage'
 
-function AllRoutes() {
+const AllRoutes = () => {
   return (
     <Routes>
       <Route path='*' element={<NotFoundPage />} />
