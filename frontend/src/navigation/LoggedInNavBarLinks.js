@@ -4,10 +4,10 @@ import { NavLink, Link } from 'react-router-dom'
 import UserContext from '../context/UserContext'
 import FontAwesomeIcon from '../common/FontAwesomeIcon'
 
-const UserNavBar = ({ isSmallWindow }) => {
+function LoggedInNavBarLinks({ isSmallWindow }) {
     const { logout } = useContext(UserContext)
 
-    const currUserLinks = (
+    const loggedInUserLinks = (
         <>
             <li className='nav-item'>
                 <NavLink className='nav-link' to="/companies">
@@ -40,7 +40,7 @@ const UserNavBar = ({ isSmallWindow }) => {
         </>
     )
 
-    const currUserIconLinks = (
+    const loggedInIconLinks = (
         <>
             <li className='nav-item'>
                 <NavLink className='nav-link isSmall' to="/companies">
@@ -67,9 +67,9 @@ const UserNavBar = ({ isSmallWindow }) => {
 
     return (
         <>
-            {isSmallWindow ? currUserIconLinks : currUserLinks}
+            {isSmallWindow ? loggedInIconLinks : loggedInUserLinks}
         </>
     )
 }
 
-export default UserNavBar;
+export default LoggedInNavBarLinks

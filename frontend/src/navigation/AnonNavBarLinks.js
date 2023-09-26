@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom"
 
-const PublicNavBar = ({ isSmallWindow }) => {
+export default function AnonNavBarLinks({ isSmallWindow }) {
     return (
         <ul className="NavBarLinks navbar-nav">
             <li className='nav-item'>
@@ -20,5 +20,3 @@ const PublicNavBar = ({ isSmallWindow }) => {
         </ul>
     )
 }
-
-export default PublicNavBar;

@@ -1,11 +1,11 @@
 import { Routes, Route } from 'react-router-dom'
 import ListDataProvider from './context/ListDataProvider'
 import Home from './Home'
-import PathNameList from './commonList/PathNameList'
-import CompanyDetail from './company/CompanyDetail'
-import LoginForm from './account/LoginForm'
-import SignUpForm from './account/SignUpForm'
-import EditProfile from './account/EditProfile'
+import PathNameList from './PathNameList'
+import CompanyDetail from '../company/CompanyDetail'
+import LoginForm from '../user/LoginForm'
+import SignUpForm from '../user/SignUpForm'
+import EditProfile from '../user/EditProfile'
 import NotFoundPage from './NotFoundPage'
 
 const AllRoutes = () => {

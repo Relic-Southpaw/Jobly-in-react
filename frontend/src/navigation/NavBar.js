@@ -6,7 +6,7 @@ import useWindowDimensions from '../hooks/useWindowDimensions'
 import './NavBar.css'
 import AnonNavBarLinks from './AnonNavBarLinks'
 
-const NavBar = () => {
+function NavBar() {
     const { currentUser } = useContext(UserContext)
     const { windowSize } = useWindowDimensions()
     const isSmallWindow = windowSize.width < 800
@@ -33,4 +33,4 @@ const NavBar = () => {
     )
 }
 
-export default NavBar;
+export default NavBar
